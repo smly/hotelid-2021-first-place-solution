@@ -1,0 +1,30 @@
+train_batch_size: 32
+val_batch_size: 16
+num_workers: 16
+input_size: 512
+backbone: resnest101e
+augmentation_func: peko.augmentation.get_augv5
+
+total_epochs: 10
+train_dataset: hotels50k_s1024
+n_classes: 38768
+
+pretrained_model: data/working/models/v40_rs101e_augv5_s320_h50k/v40_rs101e_augv5_s320_h50k_epoch10.pth
+pretrained_remove_fc: true
+
+optimizer:
+  fqdn: torch.optim.Adam
+  kwargs:
+    lr: 0.0001
+    weight_decay: 0.00001
+
+scheduler:
+  fqdn: torch.optim.lr_scheduler.CosineAnnealingLR
+  kwargs:
+    T_max: 1
+    eta_min: 0.000001
+
+eval_dataset:
+  - hotels50k
+  - hotels50k_s1024
+  - hotelid

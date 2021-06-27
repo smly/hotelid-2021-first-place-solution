@@ -1,0 +1,38 @@
+api_version: 1
+
+train_batch_size: 24
+val_batch_size: 24
+num_workers: 16
+input_size: 384
+backbone: swin_large_patch4_window12_384
+augmentation_func: peko.augmentation.get_augv5
+
+total_epochs: 10
+train_dataset: hotelid_rf_v3
+n_classes: 7770
+
+model:
+  fqdn: peko.torch.swinarcface.SwinTransformerEncoderArcfaceModel
+  kwargs:
+    n_classes: 7770
+    model_name: swin_large_patch4_window12_384
+    pretrained: true
+    margin: 0.25
+    scale: 30
+
+pretrained_model: data/working/models/v122_swin_augv5_s384_adamw_h50k/v122_swin_augv5_s384_adamw_h50k_epoch10.pth
+pretrained_remove_fc: true
+
+optimizer:
+  fqdn: torch.optim.AdamW
+  kwargs:
+    lr: 0.0001
+
+scheduler:
+  fqdn: torch.optim.lr_scheduler.CosineAnnealingLR
+  kwargs:
+    T_max: 1
+    eta_min: 0.000001
+
+eval_dataset:
+  - hotels50k_s1024
