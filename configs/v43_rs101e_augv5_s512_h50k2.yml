@@ -25,6 +25,5 @@ scheduler:
     eta_min: 0.000001
 
 eval_dataset:
-  - hotels50k
   - hotels50k_s1024
   - hotelid

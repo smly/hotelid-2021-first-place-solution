@@ -28,7 +28,7 @@ def count_tentative_matches(desc_0, desc_1, th=0.9):
     bf = cv2.BFMatcher()
     matches = bf.knnMatch(desc_0, desc_1, k=2)
     # Need to draw only good matches, so create a mask
-    matchesMask = [False for i in range(len(matches))]
+    matchesMask = [False for _ in range(len(matches))]
     # SNN ratio test
     for i, (m, n) in enumerate(matches):
         if m.distance < 0.9*n.distance:

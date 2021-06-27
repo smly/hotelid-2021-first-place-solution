@@ -176,7 +176,7 @@ def evaluate_with_numpy(model, evaluation_set):
         with timer("Extract index features...", logger=logger):
             dataloaders = evaluation_set[eval_dataset_name]
             rows, label_rows = [], []
-            for idx, (X, y) in enumerate(dataloaders["index"]):
+            for _, (X, y) in enumerate(dataloaders["index"]):
                 X, y = X.to("cuda"), y.to("cuda")
                 with torch.no_grad():
                     outputs = model.extract_features(X)

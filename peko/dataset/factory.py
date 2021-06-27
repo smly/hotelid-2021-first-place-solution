@@ -1,12 +1,10 @@
 from .hotelid import get_dataloaders as get_dataloaders_hotelid
 from .hotelid_rf_v2 import get_dataloaders as get_dataloaders_hotelid_rf_v2
 from .hotelid_rf_v3 import get_dataloaders as get_dataloaders_hotelid_rf_v3
-from .hotels50k import get_dataloaders as get_dataloaders_hotels50k
 from .hotels50k_rev2 import get_dataloaders as get_dataloaders_hotels50k_rev2
 from .hotels50k_s1024 import get_dataloaders as get_dataloaders_hotels50k_s1024
 
 loaders = {
-    "hotels50k": get_dataloaders_hotels50k,
     "hotelid": get_dataloaders_hotelid,
     "hotels50k_s1024": get_dataloaders_hotels50k_s1024,
     "hotels50k_rev2": get_dataloaders_hotels50k_rev2,
